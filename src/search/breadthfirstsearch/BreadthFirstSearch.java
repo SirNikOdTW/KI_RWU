@@ -1,6 +1,7 @@
 package search.breadthfirstsearch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BreadthFirstSearch
@@ -19,7 +20,7 @@ public class BreadthFirstSearch
             newNodes.addAll(node.generateSuccessors());
         }
 
-        if (newNodes.isEmpty())
+        if (!newNodes.isEmpty())
         {
             return breadthFirstSearch(newNodes, target);
         }
