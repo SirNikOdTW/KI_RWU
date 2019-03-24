@@ -13,9 +13,9 @@ class BreadthFirstSearchTest
     void shouldReturnCorrectTarget()
     {
         int[][] state = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 0, 8}
+                {5, 0, 3},
+                {2, 1, 6},
+                {4, 7, 8}
         };
         var root = new EightPuzzleNode(state);
 
@@ -29,11 +29,7 @@ class BreadthFirstSearchTest
 
         var actual = new BreadthFirstSearch().breadthFirstSearch(List.of(root), expected);
 
-        var a = ((EightPuzzleNode) actual).getState();
-
-        for (int[] b : a)
-        {
-            System.out.println(Arrays.toString(b));
-        }
+        System.out.println("Target: " + Arrays.deepToString(targetState));
+        System.out.println("Actual:\n" + actual);
     }
 }

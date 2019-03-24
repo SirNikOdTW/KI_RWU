@@ -23,7 +23,18 @@ public class EightPuzzleNode implements Node
     @Override
     public boolean isTargetReached(Node target)
     {
-        return Arrays.equals(this.state, ((EightPuzzleNode) target).state);
+        for (int row = 0; row < this.state.length; row++)
+        {
+            for (int col = 0; col < this.state[row].length; col++)
+            {
+                if (this.state[row][col] != ((EightPuzzleNode) target).state[row][col])
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -125,6 +136,19 @@ public class EightPuzzleNode implements Node
         }
 
         return copy;
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+
+        for (int[] row : this.state)
+        {
+            builder.append(Arrays.toString(row)).append("\n");
+        }
+
+        return builder.toString();
     }
 
     private class IntPair
