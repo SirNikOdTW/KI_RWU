@@ -1,6 +1,7 @@
+package search.breadthfirstsearch;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class BreadthFirstSearch
 {
@@ -10,12 +11,12 @@ public class BreadthFirstSearch
 
         for (Node node : nodes)
         {
-            if (target.equals(node))
+            if (node.isTargetReached(target))
             {
                 return node;
             }
 
-            newNodes.addAll(node.getChildren());
+            newNodes.addAll(node.generateSuccessors());
         }
 
         if (newNodes.isEmpty())
