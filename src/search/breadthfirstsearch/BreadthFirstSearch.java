@@ -1,16 +1,15 @@
 package search.breadthfirstsearch;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BreadthFirstSearch
 {
-    public Node breadthFirstSearch(List<Node> nodes, Node target)
+    public <T> Node<T> breadthFirstSearch(List<Node<T>> nodes, Node<T> target)
     {
-        var newNodes = new ArrayList<Node>();
+        var newNodes = new ArrayList<Node<T>>();
 
-        for (Node node : nodes)
+        for (Node<T> node : nodes)
         {
             if (node.isTargetReached(target))
             {

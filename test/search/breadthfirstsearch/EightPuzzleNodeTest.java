@@ -3,9 +3,6 @@ package search.breadthfirstsearch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 class EightPuzzleNodeTest
 {
     @Test
@@ -120,8 +117,8 @@ class EightPuzzleNodeTest
                 {0, 5, 8}
         };
 
-        Assertions.assertArrayEquals(newState1, ((EightPuzzleNode) successors.get(0)).getState());
-        Assertions.assertArrayEquals(newState2, ((EightPuzzleNode) successors.get(1)).getState());
-        Assertions.assertArrayEquals(newState3, ((EightPuzzleNode) successors.get(2)).getState());
+        Assertions.assertArrayEquals(newState1, successors.get(0).getValue());
+        Assertions.assertArrayEquals(newState2, successors.get(1).getValue());
+        Assertions.assertArrayEquals(newState3, successors.get(2).getValue());
     }
 }

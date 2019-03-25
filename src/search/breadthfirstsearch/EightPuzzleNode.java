@@ -6,28 +6,26 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-public class EightPuzzleNode implements Node
+public class EightPuzzleNode extends Node<int[][]>
 {
-    private int[][] state;
-
     public EightPuzzleNode(int[][] state)
     {
-        if (!isValidState(state))
-        {
-            throw new IllegalArgumentException("Allowed numbers are only 0-8 and they must exist uniquely.");
-        }
+        super(state);
+    }
 
-        this.state = state;
+    private EightPuzzleNode(int[][] value, Node<int[][]> parent)
+    {
+        super(value, parent);
     }
 
     @Override
-    public boolean isTargetReached(Node target)
+    public boolean isTargetReached(Node<int[][]> target)
     {
-        for (int row = 0; row < this.state.length; row++)
+        for (int row = 0; row < super.value.length; row++)
         {
-            for (int col = 0; col < this.state[row].length; col++)
+            for (int col = 0; col < super.value[row].length; col++)
             {
-                if (this.state[row][col] != ((EightPuzzleNode) target).state[row][col])
+                if (super.value[row][col] != target.value[row][col])
                 {
                     return false;
                 }
@@ -38,9 +36,9 @@ public class EightPuzzleNode implements Node
     }
 
     @Override
-    public List<Node> generateSuccessors()
+    public List<Node<int[][]>> generateSuccessors()
     {
-        var successors = new ArrayList<Node>();
+        var successors = new ArrayList<Node<int[][]>>();
         var emptyPosition = Objects.requireNonNull(detectEmptyPosition());
         int x = emptyPosition.getRight();
         int y = emptyPosition.getLeft();
@@ -58,25 +56,25 @@ public class EightPuzzleNode implements Node
                         tmp = newState[y-1][x];
                         newState[y-1][x] = newState[y][x];
                         newState[y][x] = tmp;
-                        successors.add(new EightPuzzleNode(newState));
+                        successors.add(new EightPuzzleNode(newState, this));
                         break;
                     case RIGHT:
                         tmp = newState[y][x+1];
                         newState[y][x+1] = newState[y][x];
                         newState[y][x] = tmp;
-                        successors.add(new EightPuzzleNode(newState));
+                        successors.add(new EightPuzzleNode(newState, this));
                         break;
                     case DOWN:
                         tmp = newState[y+1][x];
                         newState[y+1][x] = newState[y][x];
                         newState[y][x] = tmp;
-                        successors.add(new EightPuzzleNode(newState));
+                        successors.add(new EightPuzzleNode(newState, this));
                         break;
                     case LEFT:
                         tmp = newState[y][x-1];
                         newState[y][x-1] = newState[y][x];
                         newState[y][x] = tmp;
-                        successors.add(new EightPuzzleNode(newState));
+                        successors.add(new EightPuzzleNode(newState, this));
                         break;
                 }
             }
@@ -88,12 +86,8 @@ public class EightPuzzleNode implements Node
         return successors;
     }
 
-    public int[][] getState()
-    {
-        return state;
-    }
-
-    private boolean isValidState(int[][] state)
+    @Override
+    protected boolean isValidValue(int[][] state)
     {
         var numbers = Arrays.stream(state).flatMapToInt(IntStream::of).toArray();
 
@@ -112,11 +106,11 @@ public class EightPuzzleNode implements Node
 
     private IntPair detectEmptyPosition()
     {
-        for (int row = 0; row < this.state.length; row++)
+        for (int row = 0; row < super.value.length; row++)
         {
-            for (int col = 0; col < this.state[row].length; col++)
+            for (int col = 0; col < super.value[row].length; col++)
             {
-                if (state[row][col] == 0)
+                if (super.value[row][col] == 0)
                 {
                     return new IntPair(row, col);
                 }
@@ -132,7 +126,7 @@ public class EightPuzzleNode implements Node
 
         for (int y = 0; y < copy.length; y++)
         {
-            System.arraycopy(this.state[y], 0, copy[y], 0, copy.length);
+            System.arraycopy(super.value[y], 0, copy[y], 0, copy.length);
         }
 
         return copy;
@@ -141,9 +135,9 @@ public class EightPuzzleNode implements Node
     @Override
     public String toString()
     {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder("Node:\n");
 
-        for (int[] row : this.state)
+        for (int[] row : super.value)
         {
             builder.append(Arrays.toString(row)).append("\n");
         }

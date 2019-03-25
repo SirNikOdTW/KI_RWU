@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BreadthFirstSearchTest
 {
     @Test
@@ -19,7 +17,6 @@ class BreadthFirstSearchTest
         };
         var root = new EightPuzzleNode(state);
 
-
         int[][] targetState = {
                 {1, 2, 3},
                 {4, 5, 6},
@@ -31,5 +28,10 @@ class BreadthFirstSearchTest
 
         System.out.println("Target: " + Arrays.deepToString(targetState));
         System.out.println("Actual:\n" + actual);
+    }
+
+    private void printSolution(Node<int[][]> targetNode)
+    {
+
     }
 }
