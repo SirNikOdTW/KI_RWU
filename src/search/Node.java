@@ -1,4 +1,4 @@
-package search.breadthfirstsearch;
+package search;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public abstract class Node<T>
 
     protected Node(T value, Node<T> parent)
     {
-        if (!isValidValue(value))
+        if (!isValidParameterValue(value))
         {
             throw new IllegalArgumentException("Illegal node value");
         }
@@ -33,13 +33,7 @@ public abstract class Node<T>
         return this.parent;
     }
 
-    @Override
-    public String toString()
-    {
-        return this.value.toString();
-    }
-
-    protected abstract boolean isValidValue(T value);
+    protected abstract boolean isValidParameterValue(T value);
     public abstract boolean isTargetReached(Node<T> target);
     public abstract List<Node<T>> generateSuccessors();
 }
