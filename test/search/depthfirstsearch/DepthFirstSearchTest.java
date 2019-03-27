@@ -2,9 +2,6 @@ package search.depthfirstsearch;
 
 import org.junit.jupiter.api.Test;
 import search.EightPuzzleNode;
-import search.breadthfirstsearch.BreadthFirstSearch;
-
-import java.util.List;
 
 import static search.SearchTestUtils.printSolution;
 

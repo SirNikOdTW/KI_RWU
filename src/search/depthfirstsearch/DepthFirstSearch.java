@@ -2,9 +2,6 @@ package search.depthfirstsearch;
 
 import search.Node;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DepthFirstSearch
 {
     public <T> Node<T> depthFirstSearch(Node<T> node, Node<T> target)
