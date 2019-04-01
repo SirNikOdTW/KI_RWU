@@ -1,12 +1,8 @@
-package search.iterativedeepening;
+package search.uninformed.iterativedeepening;
 
 import org.junit.jupiter.api.Test;
 import search.EightPuzzleNode;
-import search.breadthfirstsearch.BreadthFirstSearch;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static search.SearchTestUtils.printSolution;
 
 class IterativeDeepeningTest
@@ -34,7 +30,7 @@ class IterativeDeepeningTest
     }
 
     @Test
-    void shouldReturnCorrectTargetChubekNode()
+    void shouldReturnCorrectTargetCubekNode()
     {
         int[][] state = {
                 {2, 0, 4},

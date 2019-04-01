@@ -1,4 +1,4 @@
-package search.depthfirstsearch;
+package search.uninformed.depthfirstsearch;
 
 import search.Node;
 

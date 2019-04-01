@@ -1,4 +1,4 @@
-package search.breadthfirstsearch;
+package search.uninformed.breadthfirstsearch;
 
 import search.Node;
 

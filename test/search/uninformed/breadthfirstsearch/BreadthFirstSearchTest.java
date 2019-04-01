@@ -1,4 +1,4 @@
-package search.breadthfirstsearch;
+package search.uninformed.breadthfirstsearch;
 
 import org.junit.jupiter.api.Test;
 import search.EightPuzzleNode;
@@ -32,7 +32,7 @@ class BreadthFirstSearchTest
     }
 
     @Test
-    void shouldReturnCorrectTargetChubekNode()
+    void shouldReturnCorrectTargetCubekNode()
     {
         int[][] state = {
                 {2, 0, 4},

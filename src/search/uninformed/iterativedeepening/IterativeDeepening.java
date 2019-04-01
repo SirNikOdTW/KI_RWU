@@ -1,4 +1,4 @@
-package search.iterativedeepening;
+package search.uninformed.iterativedeepening;
 
 import search.Node;
 
