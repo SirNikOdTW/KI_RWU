@@ -28,10 +28,10 @@ public class EightPuzzleNode extends Node<int[][]>
     {
         final var successors = new ArrayList<Node<int[][]>>();
         final var emptyPosition = Objects.requireNonNull(detectEmptyPosition());
-        final int x = emptyPosition.getX();
-        final int y = emptyPosition.getY();
+        final var x = emptyPosition.getX();
+        final var y = emptyPosition.getY();
 
-        for (final Direction dir : Direction.values())
+        for (final var dir : Direction.values())
         {
             final var newState = copyOfState();
 
@@ -50,7 +50,6 @@ public class EightPuzzleNode extends Node<int[][]>
                 {
                     successors.add(successor);
                 }
-
             }
             catch (final ArrayIndexOutOfBoundsException ignored)
             {
@@ -63,9 +62,9 @@ public class EightPuzzleNode extends Node<int[][]>
     @Override
     public String toString()
     {
-        final StringBuilder builder = new StringBuilder();
+        final var builder = new StringBuilder();
 
-        for (final int[] row : super.value)
+        for (final var row : super.value)
         {
             builder.append(Arrays.toString(row)).append("\n");
         }
@@ -80,9 +79,9 @@ public class EightPuzzleNode extends Node<int[][]>
             return false;
         }
 
-        for (int row = 0; row < super.value.length; row++)
+        for (var row = 0; row < super.value.length; row++)
         {
-            for (int col = 0; col < super.value[row].length; col++)
+            for (var col = 0; col < super.value[row].length; col++)
             {
                 if (super.value[row][col] != node.value[row][col])
                 {
@@ -96,9 +95,9 @@ public class EightPuzzleNode extends Node<int[][]>
 
     private IntPair detectEmptyPosition()
     {
-        for (int row = 0; row < super.value.length; row++)
+        for (var row = 0; row < super.value.length; row++)
         {
-            for (int col = 0; col < super.value[row].length; col++)
+            for (var col = 0; col < super.value[row].length; col++)
             {
                 if (super.value[row][col] == 0)
                 {
@@ -114,7 +113,7 @@ public class EightPuzzleNode extends Node<int[][]>
     {
         final var copy = new int[3][3];
 
-        for (int y = 0; y < copy.length; y++)
+        for (var y = 0; y < copy.length; y++)
         {
             System.arraycopy(super.value[y], 0, copy[y], 0, copy.length);
         }
@@ -124,15 +123,9 @@ public class EightPuzzleNode extends Node<int[][]>
 
     private EightPuzzleNode swapStateField(final int[][] newState, final IntPair emptyPos, final IntPair posToSwap)
     {
-        final int posToSwapX = posToSwap.getX();
-        final int postToSwapY = posToSwap.getY();
-        final int emptyX = emptyPos.getX();
-        final int emptyY = emptyPos.getY();
-        final int tmp;
-
-        tmp = newState[postToSwapY][posToSwapX];
-        newState[postToSwapY][posToSwapX] = newState[emptyY][emptyX];
-        newState[emptyY][emptyX] = tmp;
+        final var tmp = newState[posToSwap.getY()][posToSwap.getX()];
+        newState[posToSwap.getY()][posToSwap.getX()] = newState[emptyPos.getY()][emptyPos.getX()];
+        newState[emptyPos.getY()][emptyPos.getX()] = tmp;
 
         return new EightPuzzleNode(newState, this);
     }
@@ -162,6 +155,5 @@ public class EightPuzzleNode extends Node<int[][]>
     private enum Direction
     {
         TOP, RIGHT, DOWN, LEFT
-
     }
 }

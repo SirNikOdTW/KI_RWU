@@ -1,6 +1,9 @@
 package search;
 
+import search.heuristic.Heuristic;
+
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Node<T>
 {
@@ -14,7 +17,7 @@ public abstract class Node<T>
 
     protected Node(final T value, final Node<T> parent)
     {
-        this.value = value;
+        this.value = Objects.requireNonNull(value);
         this.parent = parent;
     }
 
@@ -28,6 +31,6 @@ public abstract class Node<T>
         return this.parent;
     }
 
-    public abstract boolean isTargetReached(Node<T> target);
+    public abstract boolean isTargetReached(final Node<T> target);
     public abstract List<Node<T>> generateSuccessors();
 }

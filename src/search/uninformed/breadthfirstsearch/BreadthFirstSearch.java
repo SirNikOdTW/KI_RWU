@@ -11,7 +11,7 @@ public class BreadthFirstSearch
     {
         final var newNodes = new ArrayList<Node<T>>();
 
-        for (final Node<T> node : nodes)
+        for (final var node : nodes)
         {
             if (node.isTargetReached(target))
             {

@@ -6,7 +6,7 @@ public class IterativeDeepening
 {
     public <T> Node<T> iterativeDeepening(final Node<T> node, final Node<T> target)
     {
-        int lowBarrier = 0;
+        var lowBarrier = 0;
 
         Node<T> resultNode;
 
