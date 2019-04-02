@@ -4,18 +4,18 @@ import search.Node;
 
 public class DepthFirstSearch
 {
-    public <T> Node<T> depthFirstSearch(Node<T> node, Node<T> target)
+    public <T> Node<T> depthFirstSearch(final Node<T> node, final Node<T> target)
     {
         if (node.isTargetReached(target))
         {
             return node;
         }
 
-        var newNodes = node.generateSuccessors();
+        final var newNodes = node.generateSuccessors();
 
         while (!newNodes.isEmpty())
         {
-            var resultNode = depthFirstSearch(newNodes.get(0), target);
+            final var resultNode = depthFirstSearch(newNodes.get(0), target);
 
             if (resultNode != null)
             {

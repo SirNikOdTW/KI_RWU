@@ -7,11 +7,11 @@ import java.util.List;
 
 public class BreadthFirstSearch
 {
-    public <T> Node<T> breadthFirstSearch(List<Node<T>> nodes, Node<T> target)
+    public <T> Node<T> breadthFirstSearch(final List<Node<T>> nodes, final Node<T> target)
     {
-        var newNodes = new ArrayList<Node<T>>();
+        final var newNodes = new ArrayList<Node<T>>();
 
-        for (Node<T> node : nodes)
+        for (final Node<T> node : nodes)
         {
             if (node.isTargetReached(target))
             {

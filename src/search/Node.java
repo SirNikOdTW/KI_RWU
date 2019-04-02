@@ -4,21 +4,16 @@ import java.util.List;
 
 public abstract class Node<T>
 {
-    protected T value;
-    private Node<T> parent;
+    protected final T value;
+    private final Node<T> parent;
 
-    protected Node(T value)
+    protected Node(final T value)
     {
         this(value, null);
     }
 
-    protected Node(T value, Node<T> parent)
+    protected Node(final T value, final Node<T> parent)
     {
-        if (!isValidParameterValue(value))
-        {
-            throw new IllegalArgumentException("Illegal node value");
-        }
-
         this.value = value;
         this.parent = parent;
     }
@@ -33,7 +28,6 @@ public abstract class Node<T>
         return this.parent;
     }
 
-    protected abstract boolean isValidParameterValue(T value);
     public abstract boolean isTargetReached(Node<T> target);
     public abstract List<Node<T>> generateSuccessors();
 }

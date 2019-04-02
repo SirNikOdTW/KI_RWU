@@ -2,7 +2,7 @@ package search;
 
 public class SearchTestUtils
 {
-    public static <T> void printSolution(Node<T> targetNode)
+    public static <T> void printSolution(final Node<T> targetNode)
     {
         var node = targetNode;
 

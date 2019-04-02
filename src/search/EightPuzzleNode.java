@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class EightPuzzleNode extends Node<int[][]>
 {
-    public EightPuzzleNode(int[][] state)
+    public EightPuzzleNode(final int[][] state)
     {
         super(state);
     }
 
-    private EightPuzzleNode(int[][] value, Node<int[][]> parent)
+    private EightPuzzleNode(final int[][] value, final Node<int[][]> parent)
     {
         super(value, parent);
     }
 
     @Override
-    public boolean isTargetReached(Node<int[][]> target)
+    public boolean isTargetReached(final Node<int[][]> target)
     {
         return valueEquals(target);
     }
@@ -27,25 +26,25 @@ public class EightPuzzleNode extends Node<int[][]>
     @Override
     public List<Node<int[][]>> generateSuccessors()
     {
-        var successors = new ArrayList<Node<int[][]>>();
-        var emptyPosition = Objects.requireNonNull(detectEmptyPosition());
-        int x = emptyPosition.getX();
-        int y = emptyPosition.getY();
+        final var successors = new ArrayList<Node<int[][]>>();
+        final var emptyPosition = Objects.requireNonNull(detectEmptyPosition());
+        final int x = emptyPosition.getX();
+        final int y = emptyPosition.getY();
 
-        for (Direction dir : Direction.values())
+        for (final Direction dir : Direction.values())
         {
-            var newState = copyOfState();
+            final var newState = copyOfState();
 
             try
             {
-                var posToSwap = switch (dir) {
+                final var posToSwap = switch (dir) {
                     case TOP -> new IntPair(x, y-1);
                     case RIGHT -> new IntPair(x+1, y);
                     case DOWN -> new IntPair(x, y+1);
                     case LEFT -> new IntPair(x-1, y);
                 };
 
-                var successor = this.swapStateField(newState, emptyPosition, posToSwap);
+                final var successor = this.swapStateField(newState, emptyPosition, posToSwap);
 
                 if (!successor.valueEquals(this) && !successor.valueEquals(super.getParent()))
                 {
@@ -53,7 +52,7 @@ public class EightPuzzleNode extends Node<int[][]>
                 }
 
             }
-            catch (ArrayIndexOutOfBoundsException ignored)
+            catch (final ArrayIndexOutOfBoundsException ignored)
             {
             }
         }
@@ -62,19 +61,11 @@ public class EightPuzzleNode extends Node<int[][]>
     }
 
     @Override
-    protected boolean isValidParameterValue(int[][] state)
-    {
-        var numbers = Arrays.stream(state).flatMapToInt(IntStream::of).toArray();
-
-        return numbersAreInAllowedRange(numbers) && numbersAreUnique(numbers);
-    }
-
-    @Override
     public String toString()
     {
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
 
-        for (int[] row : super.value)
+        for (final int[] row : super.value)
         {
             builder.append(Arrays.toString(row)).append("\n");
         }
@@ -82,7 +73,7 @@ public class EightPuzzleNode extends Node<int[][]>
         return builder.toString();
     }
 
-    private boolean valueEquals(Node<int[][]> node)
+    private boolean valueEquals(final Node<int[][]> node)
     {
         if (node == null)
         {
@@ -103,16 +94,6 @@ public class EightPuzzleNode extends Node<int[][]>
         return true;
     }
 
-    private boolean numbersAreInAllowedRange(int[] numbers)
-    {
-        return Arrays.stream(numbers).min().getAsInt() == 0 && Arrays.stream(numbers).max().getAsInt() == 8;
-    }
-
-    private boolean numbersAreUnique(int[] numbers)
-    {
-        return Arrays.stream(numbers).count() == Arrays.stream(numbers).distinct().count();
-    }
-
     private IntPair detectEmptyPosition()
     {
         for (int row = 0; row < super.value.length; row++)
@@ -131,7 +112,7 @@ public class EightPuzzleNode extends Node<int[][]>
 
     private int[][] copyOfState()
     {
-        var copy = new int[3][3];
+        final var copy = new int[3][3];
 
         for (int y = 0; y < copy.length; y++)
         {
@@ -141,13 +122,13 @@ public class EightPuzzleNode extends Node<int[][]>
         return copy;
     }
 
-    private EightPuzzleNode swapStateField(int[][] newState, IntPair emptyPos, IntPair posToSwap)
+    private EightPuzzleNode swapStateField(final int[][] newState, final IntPair emptyPos, final IntPair posToSwap)
     {
-        int posToSwapX = posToSwap.getX();
-        int postToSwapY = posToSwap.getY();
-        int emptyX = emptyPos.getX();
-        int emptyY = emptyPos.getY();
-        int tmp;
+        final int posToSwapX = posToSwap.getX();
+        final int postToSwapY = posToSwap.getY();
+        final int emptyX = emptyPos.getX();
+        final int emptyY = emptyPos.getY();
+        final int tmp;
 
         tmp = newState[postToSwapY][posToSwapX];
         newState[postToSwapY][posToSwapX] = newState[emptyY][emptyX];
@@ -161,7 +142,7 @@ public class EightPuzzleNode extends Node<int[][]>
         private final int x;
         private final int y;
 
-        public IntPair(int x, int y)
+        public IntPair(final int x, final int y)
         {
             this.x = x;
             this.y = y;
@@ -177,6 +158,7 @@ public class EightPuzzleNode extends Node<int[][]>
         }
 
     }
+
     private enum Direction
     {
         TOP, RIGHT, DOWN, LEFT

@@ -4,7 +4,7 @@ import search.Node;
 
 public class IterativeDeepening
 {
-    public <T> Node<T> iterativeDeepening(Node<T> node, Node<T> target)
+    public <T> Node<T> iterativeDeepening(final Node<T> node, final Node<T> target)
     {
         int lowBarrier = 0;
 
@@ -19,18 +19,18 @@ public class IterativeDeepening
         return resultNode;
     }
 
-    private <T> Node<T> depthFirstSearch(Node<T> node, Node<T> target, int depth, int barrier)
+    private <T> Node<T> depthFirstSearch(final Node<T> node, final Node<T> target, int depth, final int barrier)
     {
         if (node.isTargetReached(target))
         {
             return node;
         }
 
-        var newNodes = node.generateSuccessors();
+        final var newNodes = node.generateSuccessors();
 
         while (!newNodes.isEmpty() && depth < barrier)
         {
-            var resultNode = depthFirstSearch(newNodes.get(0), target, ++depth, barrier);
+            final var resultNode = depthFirstSearch(newNodes.get(0), target, ++depth, barrier);
 
             if (resultNode != null)
             {
