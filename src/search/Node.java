@@ -6,7 +6,7 @@ import java.util.Objects;
 public abstract class Node<T>
 {
     protected final T value;
-    protected int heuristicCosts;
+    protected final int heuristicCosts;
     private final Node<T> parent;
     private int heuristicEstimation;
 

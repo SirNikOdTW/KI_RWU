@@ -12,11 +12,6 @@ public class EightPuzzleNode extends Node<int[][]>
         super(state);
     }
 
-    private EightPuzzleNode(final int[][] value, final Node<int[][]> parent)
-    {
-        super(value, parent);
-    }
-
     private EightPuzzleNode(final int[][] value, final Node<int[][]> parent, final int heuristicCosts)
     {
         super(value, parent, heuristicCosts);
