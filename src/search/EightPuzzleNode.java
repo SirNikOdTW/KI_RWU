@@ -17,6 +17,11 @@ public class EightPuzzleNode extends Node<int[][]>
         super(value, parent);
     }
 
+    private EightPuzzleNode(final int[][] value, final Node<int[][]> parent, final int heuristicCosts)
+    {
+        super(value, parent, heuristicCosts);
+    }
+
     @Override
     public boolean isTargetReached(final Node<int[][]> target)
     {
@@ -44,7 +49,8 @@ public class EightPuzzleNode extends Node<int[][]>
                     case LEFT -> new IntPair(x-1, y);
                 };
 
-                final var successor = this.swapStateField(newState, emptyPosition, posToSwap);
+                this.swapStateField(newState, emptyPosition, posToSwap);
+                final var successor = new EightPuzzleNode(newState, this, super.heuristicCosts+1);
 
                 if (!successor.valueEquals(this) && !successor.valueEquals(super.getParent()))
                 {
@@ -121,35 +127,11 @@ public class EightPuzzleNode extends Node<int[][]>
         return copy;
     }
 
-    private EightPuzzleNode swapStateField(final int[][] newState, final IntPair emptyPos, final IntPair posToSwap)
+    private void swapStateField(final int[][] newState, final IntPair emptyPos, final IntPair posToSwap)
     {
         final var tmp = newState[posToSwap.getY()][posToSwap.getX()];
         newState[posToSwap.getY()][posToSwap.getX()] = newState[emptyPos.getY()][emptyPos.getX()];
         newState[emptyPos.getY()][emptyPos.getX()] = tmp;
-
-        return new EightPuzzleNode(newState, this);
-    }
-
-    private class IntPair
-    {
-        private final int x;
-        private final int y;
-
-        public IntPair(final int x, final int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX()
-        {
-            return x;
-        }
-        public int getY()
-        {
-            return y;
-        }
-
     }
 
     private enum Direction
