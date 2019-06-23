@@ -33,7 +33,7 @@ public class Vector
     public Vector add(Vector b)
     {
         return new Vector(IntStream.range(0,
-                this.values.size())
+                this.dimension())
                 .mapToObj(i -> this.values.get(i) + b.values.get(i))
                 .collect(Collectors.toCollection(ArrayList::new))
         );
@@ -43,7 +43,7 @@ public class Vector
     public Vector subtract(Vector b)
     {
         return new Vector(IntStream.range(0,
-                this.values.size())
+                this.dimension())
                 .mapToObj(i -> this.values.get(i) - b.values.get(i))
                 .collect(Collectors.toCollection(ArrayList::new))
         );
@@ -52,9 +52,14 @@ public class Vector
     public double scalar(Vector b)
     {
         return IntStream.range(0,
-                this.values.size())
+                this.dimension())
                 .mapToDouble(i -> this.values.get(i) * b.values.get(i))
                 .sum();
+    }
+
+    public double get(int index)
+    {
+        return this.values.get(index);
     }
 
     @Override

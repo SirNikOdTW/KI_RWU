@@ -1,6 +1,7 @@
 package machine_learning.perceptron;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Perceptron
 {
@@ -36,7 +37,7 @@ public class Perceptron
     }
 
     private Vector getInitializationVector(List<Vector> positives, List<Vector> negatives)
-    {/*
+    {
         var a = new Vector(positives.get(0).dimension());
         for (var x : positives)
         {
@@ -49,9 +50,7 @@ public class Perceptron
             b = b.add(x);
         }
 
-        return a.subtract(b);*/
-
-        return new Vector(positives.get(0).dimension());
+        return a.subtract(b);
     }
 
     private boolean elementsAreCorrectClassified(List<Vector> vectors, Vector weight, int expectedClass)
@@ -60,7 +59,7 @@ public class Perceptron
 
         for (var x : vectors)
         {
-            actualClass = weight.scalar(x) > 0 ? 1 : 0;
+            actualClass = scalarForThreshholdPerceptron(weight, x) > weight.get(weight.dimension()-1) ? 1 : 0;
 
             if (actualClass != expectedClass)
             {
@@ -69,5 +68,13 @@ public class Perceptron
         }
 
         return true;
+    }
+
+    private double scalarForThreshholdPerceptron(Vector a, Vector b)
+    {
+        return IntStream.range(0,
+                a.dimension()-1)
+                .mapToDouble(i -> a.get(i) * b.get(i))
+                .sum();
     }
 }
