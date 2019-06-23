@@ -45,13 +45,36 @@ class VectorTest
     }
 
     @Test
-    void shouldReturnCorrectVectorWhenScalar()
+    void shouldReturnCorrectVectorWhenScalarMultiplying()
     {
         var v1 = new Vector(List.of(1d, 2d));
         var v2 = new Vector(List.of(3d, 4d));
 
         var result = v1.scalar(v2);
         var expected = 11d;
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void shouldReturnCorrectVectorWhenEuclid()
+    {
+        var v1 = new Vector(List.of(1d, 2d));
+
+        var result = v1.euclid();
+        var expected = Math.sqrt(5);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void shouldReturnCorrectVectorWhenDividing()
+    {
+        var v1 = new Vector(List.of(1d, 2d));
+        var div = 2d;
+
+        var result = v1.divide(div);
+        var expected = new Vector(List.of(0.5d, 1d));
 
         assertEquals(expected, result);
     }

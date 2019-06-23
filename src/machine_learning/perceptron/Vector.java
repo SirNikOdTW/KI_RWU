@@ -34,8 +34,8 @@ public class Vector
     {
         return new Vector(IntStream.range(0,
                 this.dimension())
-                .mapToObj(i -> this.values.get(i) + b.values.get(i))
-                .collect(Collectors.toCollection(ArrayList::new))
+                .mapToObj(i -> this.get(i) + b.get(i))
+                .collect(Collectors.toList())
         );
 
     }
@@ -44,8 +44,8 @@ public class Vector
     {
         return new Vector(IntStream.range(0,
                 this.dimension())
-                .mapToObj(i -> this.values.get(i) - b.values.get(i))
-                .collect(Collectors.toCollection(ArrayList::new))
+                .mapToObj(i -> this.get(i) - b.get(i))
+                .collect(Collectors.toList())
         );
     }
 
@@ -53,8 +53,28 @@ public class Vector
     {
         return IntStream.range(0,
                 this.dimension())
-                .mapToDouble(i -> this.values.get(i) * b.values.get(i))
+                .mapToDouble(i -> this.get(i) * b.get(i))
                 .sum();
+    }
+
+    public double euclid()
+    {
+        return Math.sqrt(IntStream.range(0,
+                this.dimension())
+                .mapToDouble(i -> this.get(i) * this.get(i))
+                .sum());
+    }
+
+    public Vector divide(double div)
+    {
+        var divided = new ArrayList<Double>();
+
+        for (int i = 0; i < this.dimension(); i++)
+        {
+            divided.add(this.values.get(i) / div);
+        }
+
+        return new Vector(divided);
     }
 
     public double get(int index)
@@ -88,8 +108,6 @@ public class Vector
     @Override
     public String toString()
     {
-        return values.toString()
-                .replace("[", "(")
-                .replace("]", ")");
+        return this.values.toString();
     }
 }

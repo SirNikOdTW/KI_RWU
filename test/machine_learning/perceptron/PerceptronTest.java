@@ -37,4 +37,20 @@ class PerceptronTest
     {
         new Perceptron().learn(this.positives, this.negatives);
     }
+
+    @Test
+    void shouldClassifyCorrect2()
+    {
+        var positives = new ArrayList<>(List.of(
+                new Vector(List.of(0d, 1.8d)),
+                new Vector(List.of(2d, 0.6d)))
+        );
+
+        var negatives = new ArrayList<>(List.of(
+                new Vector(List.of(-1.2d, 1.4d)),
+                new Vector(List.of(0.4d, -1d)))
+        );
+
+        new Perceptron().learn(positives, negatives);
+    }
 }

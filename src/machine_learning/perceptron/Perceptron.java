@@ -15,7 +15,7 @@ public class Perceptron
             {
                 if (weight.scalar(x) <= 0)
                 {
-                    weight = weight.add(x);
+                    weight = weight.add(x.divide(x.euclid()));
                 }
             }
 
@@ -59,7 +59,7 @@ public class Perceptron
 
         for (var x : vectors)
         {
-            actualClass = scalarForThreshholdPerceptron(weight, x) > weight.get(weight.dimension()-1) ? 1 : 0;
+            actualClass = weight.scalar(x) > 0 ? 1 : 0;
 
             if (actualClass != expectedClass)
             {
@@ -70,7 +70,7 @@ public class Perceptron
         return true;
     }
 
-    private double scalarForThreshholdPerceptron(Vector a, Vector b)
+    private double scalarForThresholdPerceptron(Vector a, Vector b)
     {
         return IntStream.range(0,
                 a.dimension()-1)
