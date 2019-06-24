@@ -15,7 +15,7 @@ public class Perceptron
             {
                 if (weight.scalar(x) <= 0)
                 {
-                    weight = weight.add(x.divide(x.euclid()));
+                    weight = weight.add(x);
                 }
             }
 
@@ -29,11 +29,11 @@ public class Perceptron
 
             System.out.println(weight);
         }
-        while (elementsAreCorrectClassified(positives, weight, 1) && elementsAreCorrectClassified(negatives, weight, 0));
+        while (!elementsAreCorrectClassified(positives, negatives, weight));
 
-        System.out.println("-----------------------------------");
-        System.out.println("-- All are classified correctly. --");
-        System.out.println("-----------------------------------");
+        System.out.println("----------------------------------------------");
+        System.out.println("-- All datapoints are classified correctly. --");
+        System.out.println("----------------------------------------------");
     }
 
     private Vector getInitializationVector(List<Vector> positives, List<Vector> negatives)
@@ -53,28 +53,18 @@ public class Perceptron
         return a.subtract(b);
     }
 
-    private boolean elementsAreCorrectClassified(List<Vector> vectors, Vector weight, int expectedClass)
+    private boolean elementsAreCorrectClassified(List<Vector> positives, List<Vector> negatives, Vector weight)
     {
-        int actualClass;
-
-        for (var x : vectors)
+        for (var x : positives)
         {
-            actualClass = weight.scalar(x) > 0 ? 1 : 0;
+            if (weight.scalar(x) <= 0) return false;
+        }
 
-            if (actualClass != expectedClass)
-            {
-                return false;
-            }
+        for (var x : negatives)
+        {
+            if (weight.scalar(x) > 0) return false;
         }
 
         return true;
-    }
-
-    private double scalarForThresholdPerceptron(Vector a, Vector b)
-    {
-        return IntStream.range(0,
-                a.dimension()-1)
-                .mapToDouble(i -> a.get(i) * b.get(i))
-                .sum();
     }
 }
