@@ -7,30 +7,6 @@ import search.EightPuzzleNode;
 class EightPuzzleNodeTest
 {
     @Test
-    public void shouldThrowExceptionWhileStateHasDuplicateNumbers()
-    {
-        final int[][] state = {
-                {1, 1, 3},
-                {4, 5, 6},
-                {7, 8, 0}
-        };
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new EightPuzzleNode(state));
-    }
-
-    @Test
-    public void shouldThrowExceptionWhileStateHasNumbersOutOfRange()
-    {
-        final int[][] state = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
-        };
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new EightPuzzleNode(state));
-    }
-
-    @Test
     public void shouldReturnTrueWhenTargetReached()
     {
         final int[][] state = {

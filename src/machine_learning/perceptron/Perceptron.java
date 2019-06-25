@@ -1,7 +1,6 @@
 package machine_learning.perceptron;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Perceptron
 {

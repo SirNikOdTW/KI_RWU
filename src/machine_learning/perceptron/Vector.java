@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class Vector
 {
-    private List<Double> values;
+    private final List<Double> values;
 
     public Vector(int dim)
     {

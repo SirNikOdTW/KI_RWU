@@ -15,11 +15,6 @@ public abstract class Node<T>
         this(value, null, 0);
     }
 
-    protected Node(final T value, final Node<T> parent)
-    {
-        this(value, parent, 0);
-    }
-
     protected Node(final T value, final Node<T> parent, final int heuristicCosts)
     {
         this.value = Objects.requireNonNull(value);
