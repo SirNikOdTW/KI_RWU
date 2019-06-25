@@ -7,6 +7,7 @@ public class Perceptron
 {
     public void learn(List<Vector> positives, List<Vector> negatives)
     {
+        var iterationCounter = 0;
         var weight = this.getInitializationVector(positives, negatives);
 
         do
@@ -16,6 +17,7 @@ public class Perceptron
                 if (weight.scalar(x) <= 0)
                 {
                     weight = weight.add(x);
+                    System.out.println(weight);
                 }
             }
 
@@ -24,16 +26,17 @@ public class Perceptron
                 if (weight.scalar(x) > 0)
                 {
                     weight = weight.subtract(x);
+                    System.out.println(weight);
                 }
             }
 
-            System.out.println(weight);
+            iterationCounter++;
         }
         while (!elementsAreCorrectClassified(positives, negatives, weight));
 
-        System.out.println("----------------------------------------------");
-        System.out.println("-- All datapoints are classified correctly. --");
-        System.out.println("----------------------------------------------");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("-- All datapoints are classified correctly in " + iterationCounter + " iterations. --");
+        System.out.println("-----------------------------------------------------------------");
     }
 
     private Vector getInitializationVector(List<Vector> positives, List<Vector> negatives)

@@ -30,6 +30,7 @@ public class Vector
 
     public Vector add(Vector b)
     {
+        if (this.dimension() != b.dimension()) throw new IllegalArgumentException("Dimensions must be equals.");
         return new Vector(IntStream.range(0,
                 this.dimension())
                 .mapToObj(i -> this.get(i) + b.get(i))
@@ -40,6 +41,7 @@ public class Vector
 
     public Vector subtract(Vector b)
     {
+        if (this.dimension() != b.dimension()) throw new IllegalArgumentException("Dimensions must be equals.");
         return new Vector(IntStream.range(0,
                 this.dimension())
                 .mapToObj(i -> this.get(i) - b.get(i))
@@ -49,6 +51,7 @@ public class Vector
 
     public double scalar(Vector b)
     {
+        if (this.dimension() != b.dimension()) throw new IllegalArgumentException("Dimensions must be equals.");
         return IntStream.range(0,
                 this.dimension())
                 .mapToDouble(i -> this.get(i) * b.get(i))
