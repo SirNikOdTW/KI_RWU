@@ -1,8 +1,6 @@
-package machine_learning.perceptron;
+package machine_learning;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +12,7 @@ class VectorTest
     {
         var v = new Vector(3);
 
-        var expected = new Vector(List.of(0d, 0d, 0d));
+        var expected = new Vector(0d, 0d, 0d);
 
         assertEquals(3, v.dimension());
         assertEquals(expected, v);
@@ -23,11 +21,11 @@ class VectorTest
     @Test
     void shouldReturnCorrectVectorWhenAdding()
     {
-        var v1 = new Vector(List.of(1d, 2d));
-        var v2 = new Vector(List.of(3d, 4d));
+        var v1 = new Vector(1d, 2d);
+        var v2 = new Vector(3d, 4d);
 
         var result = v1.add(v2);
-        var expected = new Vector(List.of(4d, 6d));
+        var expected = new Vector(4d, 6d);
 
         assertEquals(expected, result);
     }
@@ -35,11 +33,11 @@ class VectorTest
     @Test
     void shouldReturnCorrectVectorWhenSubtracting()
     {
-        var v1 = new Vector(List.of(1d, 2d));
-        var v2 = new Vector(List.of(3d, 4d));
+        var v1 = new Vector(1d, 2d);
+        var v2 = new Vector(3d, 4d);
 
         var result = v1.subtract(v2);
-        var expected = new Vector(List.of(-2d, -2d));
+        var expected = new Vector(-2d, -2d);
 
         assertEquals(expected, result);
     }
@@ -47,8 +45,8 @@ class VectorTest
     @Test
     void shouldReturnCorrectVectorWhenScalarMultiplying()
     {
-        var v1 = new Vector(List.of(1d, 2d));
-        var v2 = new Vector(List.of(3d, 4d));
+        var v1 = new Vector(1d, 2d);
+        var v2 = new Vector(3d, 4d);
 
         var result = v1.scalar(v2);
         var expected = 11d;
@@ -59,7 +57,7 @@ class VectorTest
     @Test
     void shouldReturnCorrectVectorWhenEuclid()
     {
-        var v1 = new Vector(List.of(1d, 2d));
+        var v1 = new Vector(1d, 2d);
 
         var result = v1.euclid();
         var expected = Math.sqrt(5);
@@ -68,13 +66,25 @@ class VectorTest
     }
 
     @Test
+    void shouldReturnCorrectDistance()
+    {
+        var v1 = new Vector(1d, 2d);
+        var v2 = new Vector(3d, 4d);
+
+        var result = v1.distance(v2);
+        var expected = Math.sqrt(8);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
     void shouldReturnCorrectVectorWhenDividing()
     {
-        var v1 = new Vector(List.of(1d, 2d));
+        var v1 = new Vector(1d, 2d);
         var div = 2d;
 
         var result = v1.divide(div);
-        var expected = new Vector(List.of(0.5d, 1d));
+        var expected = new Vector(0.5d, 1d);
 
         assertEquals(expected, result);
     }

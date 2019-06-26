@@ -1,4 +1,4 @@
-package machine_learning.perceptron;
+package machine_learning;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,12 +10,16 @@ public class Vector
 
     public Vector(int dim)
     {
-        this.values = new ArrayList<>();
+        this(IntStream.range(0, dim)
+                .mapToDouble(i -> 0d)
+                .toArray());
+    }
 
-        for (int i = 0; i < dim; i++)
-        {
-            this.values.add(0d);
-        }
+    public Vector(double... value)
+    {
+        this(Arrays.stream(value)
+                .boxed()
+                .collect(Collectors.toList()));
     }
 
     public Vector(List<Double> values)
@@ -63,6 +67,14 @@ public class Vector
         return Math.sqrt(IntStream.range(0,
                 this.dimension())
                 .mapToDouble(i -> this.get(i) * this.get(i))
+                .sum());
+    }
+
+    public double distance(Vector b)
+    {
+        return Math.sqrt(IntStream.range(0,
+                this.dimension())
+                .mapToDouble(i -> (this.get(i) - b.get(i)) * (this.get(i) - b.get(i)))
                 .sum());
     }
 

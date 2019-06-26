@@ -1,5 +1,7 @@
 package machine_learning.perceptron;
 
+import machine_learning.Vector;
+
 import java.util.List;
 
 public class Perceptron
