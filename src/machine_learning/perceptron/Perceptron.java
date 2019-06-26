@@ -1,6 +1,7 @@
 package machine_learning.perceptron;
 
 import machine_learning.Vector;
+import machine_learning.nearest_neighbour.DataClass;
 
 import java.util.List;
 
@@ -40,6 +41,11 @@ public class Perceptron
         System.out.println("-----------------------------------------------------------------");
         System.out.println("-- All datapoints are classified correctly in " + iterationCounter + " iterations. --");
         System.out.println("-----------------------------------------------------------------");
+    }
+
+    public DataClass classify(Vector vector)
+    {
+        return this.weight.scalar(vector) > 0 ? DataClass.POSITIVE : DataClass.NEGATIVE;
     }
 
     private Vector getInitializationVector(List<Vector> positives, List<Vector> negatives)
