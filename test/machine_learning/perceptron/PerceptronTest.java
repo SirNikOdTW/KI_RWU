@@ -1,5 +1,6 @@
 package machine_learning.perceptron;
 
+import machine_learning.Vector;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -18,17 +19,17 @@ class PerceptronTest
     {
         double biasUnit = 1d;
         this.positives = new ArrayList<>(List.of(
-                new Vector(List.of(8d, 4d, biasUnit)),
-                new Vector(List.of(8d, 6d, biasUnit)),
-                new Vector(List.of(9d, 2d, biasUnit)),
-                new Vector(List.of(9d, 5d, biasUnit)))
+                new Vector(8d, 4d, biasUnit),
+                new Vector(8d, 6d, biasUnit),
+                new Vector(9d, 2d, biasUnit),
+                new Vector(9d, 5d, biasUnit))
         );
 
         this.negatives = new ArrayList<>(List.of(
-                new Vector(List.of(6d, 1d, biasUnit)),
-                new Vector(List.of(7d, 3d, biasUnit)),
-                new Vector(List.of(8d, 2d, biasUnit)),
-                new Vector(List.of(9d, 0d, biasUnit)))
+                new Vector(6d, 1d, biasUnit),
+                new Vector(7d, 3d, biasUnit),
+                new Vector(8d, 2d, biasUnit),
+                new Vector(9d, 0d, biasUnit))
         );
     }
 

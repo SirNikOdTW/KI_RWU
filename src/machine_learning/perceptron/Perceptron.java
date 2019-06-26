@@ -6,10 +6,12 @@ import java.util.List;
 
 public class Perceptron
 {
+    private Vector weight;
+
     public void learn(List<Vector> positives, List<Vector> negatives)
     {
         var iterationCounter = 0;
-        var weight = this.getInitializationVector(positives, negatives);
+        this.weight = this.getInitializationVector(positives, negatives);
 
         do
         {
