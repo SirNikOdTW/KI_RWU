@@ -1,8 +1,7 @@
 package machine_learning.perceptron;
 
 import machine_learning.Vector;
-import machine_learning.nearest_neighbour.DataClass;
-import org.junit.jupiter.api.Assertions;
+import machine_learning.DataClass;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

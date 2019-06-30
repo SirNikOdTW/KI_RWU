@@ -95,6 +95,16 @@ public class Vector
         return this.values.get(index);
     }
 
+    public Vector decreasedDimension()
+    {
+        return new Vector(this.values.subList(0, this.dimension()-1));
+    }
+
+    public Vector normalized()
+    {
+        return this.divide(this.euclid());
+    }
+
     @Override
     public boolean equals(Object o)
     {

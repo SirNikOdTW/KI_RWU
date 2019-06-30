@@ -24,10 +24,10 @@ class VectorTest
         var v1 = new Vector(1d, 2d);
         var v2 = new Vector(3d, 4d);
 
-        var result = v1.add(v2);
+        var actual = v1.add(v2);
         var expected = new Vector(4d, 6d);
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -36,10 +36,10 @@ class VectorTest
         var v1 = new Vector(1d, 2d);
         var v2 = new Vector(3d, 4d);
 
-        var result = v1.subtract(v2);
+        var actual = v1.subtract(v2);
         var expected = new Vector(-2d, -2d);
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -48,10 +48,10 @@ class VectorTest
         var v1 = new Vector(1d, 2d);
         var v2 = new Vector(3d, 4d);
 
-        var result = v1.scalar(v2);
+        var actual = v1.scalar(v2);
         var expected = 11d;
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -59,10 +59,10 @@ class VectorTest
     {
         var v1 = new Vector(1d, 2d);
 
-        var result = v1.euclid();
+        var actual = v1.euclid();
         var expected = Math.sqrt(5);
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -71,10 +71,10 @@ class VectorTest
         var v1 = new Vector(1d, 2d);
         var v2 = new Vector(3d, 4d);
 
-        var result = v1.distance(v2);
+        var actual = v1.distance(v2);
         var expected = Math.sqrt(8);
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -83,9 +83,34 @@ class VectorTest
         var v1 = new Vector(1d, 2d);
         var div = 2d;
 
-        var result = v1.divide(div);
+        var actual = v1.divide(div);
         var expected = new Vector(0.5d, 1d);
 
-        assertEquals(expected, result);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldDecreaseDimensionCorrect()
+    {
+        var v = new Vector(1d, 2d, 3d, 4d);
+        
+        var decreasedDimensionVector = v.decreasedDimension();
+        
+        var actual = decreasedDimensionVector.dimension();
+        var expected = 3;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldNormalizeCorrect()
+    {
+        var v = new Vector(4d, 4d, 4d, 4d);
+
+        var actual = v.normalized();
+
+        var expected = new Vector(0.5d, 0.5d, 0.5d, 0.5d);
+
+        assertEquals(expected, actual);
     }
 }

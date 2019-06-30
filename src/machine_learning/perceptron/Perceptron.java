@@ -1,11 +1,12 @@
 package machine_learning.perceptron;
 
+import machine_learning.MachineLearning;
 import machine_learning.Vector;
-import machine_learning.nearest_neighbour.DataClass;
+import machine_learning.DataClass;
 
 import java.util.List;
 
-public class Perceptron
+public class Perceptron implements MachineLearning
 {
     private Vector weight;
 

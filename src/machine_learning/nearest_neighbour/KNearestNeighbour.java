@@ -1,5 +1,7 @@
 package machine_learning.nearest_neighbour;
 
+import machine_learning.DataClass;
+import machine_learning.MachineLearning;
 import machine_learning.Vector;
 
 import java.util.List;
@@ -8,8 +10,11 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class KNearestNeighbour
+public class KNearestNeighbour implements MachineLearning
 {
+    private List<Vector> positives;
+    private List<Vector> negatives;
+
     private Distance distance;
 
     private int k;
@@ -25,20 +30,26 @@ public class KNearestNeighbour
         this.k = k;
     }
 
-    public DataClass kNearestNeighbour(List<Vector> positives, List<Vector> negatives, Vector toClassify)
+    public void learn(List<Vector> positives, List<Vector> negatives)
+    {
+        this.positives = positives;
+        this.negatives = negatives;
+    }
+
+    public DataClass classify(Vector toClassify)
     {
         var nearestNeighbours = this.nearestNeighbours(
-                Stream.concat(positives.stream(), negatives.stream())
+                Stream.concat(this.positives.stream(), this.negatives.stream())
                         .collect(Collectors.toList()),
                 toClassify
         );
 
         var positivesWithNearestNeighboursAmount = nearestNeighbours.stream()
-                .filter(positives::contains)
+                .filter(this.positives::contains)
                 .count();
 
         var negativesWithNearestNeighboursAmount = nearestNeighbours.stream()
-                .filter(negatives::contains)
+                .filter(this.negatives::contains)
                 .count();
 
         if (positivesWithNearestNeighboursAmount > negativesWithNearestNeighboursAmount)
@@ -55,13 +66,12 @@ public class KNearestNeighbour
 
     private List<Vector> nearestNeighbours(List<Vector> vectors, Vector vector)
     {
-        var nearestNeighbours = vectors.stream()
+        return vectors.parallelStream()
                 .map(v -> Map.entry(this.distance.distance(v, vector), v))
                 .sorted((e1, e2) -> e1.getKey() >= e2.getKey() ? (e1.getKey().equals(e2.getKey()) ? 0 : 1) : -1)
                 .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
-
-        return nearestNeighbours.subList(0, this.k);
+                .collect(Collectors.toList())
+                .subList(0, this.k);
     }
 }
 
