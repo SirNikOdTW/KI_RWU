@@ -28,8 +28,8 @@ public class EightPuzzleNode extends Node<int[][]>
     {
         final var successors = new ArrayList<Node<int[][]>>();
         final var emptyPosition = Objects.requireNonNull(detectEmptyPosition());
-        final var x = emptyPosition.getX();
-        final var y = emptyPosition.getY();
+        final var x = emptyPosition.x();
+        final var y = emptyPosition.y();
 
         for (final var dir : Direction.values())
         {
@@ -124,13 +124,8 @@ public class EightPuzzleNode extends Node<int[][]>
 
     private void swapStateField(final int[][] newState, final IntPair emptyPos, final IntPair posToSwap)
     {
-        final var tmp = newState[posToSwap.getY()][posToSwap.getX()];
-        newState[posToSwap.getY()][posToSwap.getX()] = newState[emptyPos.getY()][emptyPos.getX()];
-        newState[emptyPos.getY()][emptyPos.getX()] = tmp;
-    }
-
-    private enum Direction
-    {
-        TOP, RIGHT, DOWN, LEFT
+        final var tmp = newState[posToSwap.y()][posToSwap.x()];
+        newState[posToSwap.y()][posToSwap.x()] = newState[emptyPos.y()][emptyPos.x()];
+        newState[emptyPos.y()][emptyPos.x()] = tmp;
     }
 }

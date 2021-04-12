@@ -86,8 +86,8 @@ class AStarTest
 
             if (targetPos != null && actualPos != null)
             {
-                final var xDistance = Math.abs(targetPos.getX() - actualPos.getX());
-                final var yDistance = Math.abs(targetPos.getY() - actualPos.getY());
+                final var xDistance = Math.abs(targetPos.x() - actualPos.x());
+                final var yDistance = Math.abs(targetPos.y() - actualPos.y());
 
                 manhattanDistance += xDistance + yDistance;
             }

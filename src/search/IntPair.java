@@ -1,23 +1,5 @@
 package search;
 
-public class IntPair
+public record IntPair(int x, int y)
 {
-    private final int x;
-    private final int y;
-
-    public IntPair(final int x, final int y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX()
-    {
-        return x;
-    }
-    public int getY()
-    {
-        return y;
-    }
-
 }
