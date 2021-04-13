@@ -2,9 +2,6 @@ package search;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import search.uninformed.iterativedeepening.IterativeDeepening;
-
-import static search.SearchTestUtils.printSolution;
 
 class LabyrinthineNodeTest
 {
