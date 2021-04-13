@@ -1,7 +1,6 @@
 package machine_learning.nearest_neighbour;
 
 import machine_learning.DataClass;
-import machine_learning.MachineLearning;
 import machine_learning.Vector;
 
 import java.util.*;
