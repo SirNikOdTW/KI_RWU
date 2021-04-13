@@ -120,28 +120,4 @@ class LabyrinthineNodeTest
         Assertions.assertArrayEquals(targetSuccessor2, successors.get(1).getValue());
         Assertions.assertArrayEquals(targetSuccessor3, successors.get(2).getValue());
     }
-
-    @Test
-    void shouldReturnCorrectTarget()
-    {
-        final boolean[][] state = {
-                {true, false, true},
-                {false, true, false},
-                {true, false, true}
-        };
-
-        final var root = new LabyrinthineNode(state);
-
-        final boolean[][] targetState = {
-                {true, true, true},
-                {true, true, true},
-                {true, true, true},
-        };
-
-        final var expected = new LabyrinthineNode(targetState);
-
-        final var actual = new IterativeDeepening().iterativeDeepening(root, expected);
-
-        printSolution(actual);
-    }
 }

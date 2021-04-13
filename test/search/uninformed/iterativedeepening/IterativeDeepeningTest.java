@@ -2,13 +2,14 @@ package search.uninformed.iterativedeepening;
 
 import org.junit.jupiter.api.Test;
 import search.EightPuzzleNode;
+import search.LabyrinthineNode;
 
 import static search.SearchTestUtils.printSolution;
 
 class IterativeDeepeningTest
 {
     @Test
-    void shouldReturnCorrectTarget()
+    void shouldReturnCorrectTargetEightPuzzle()
     {
         final int[][] state = {
                 {5, 0, 3},
@@ -30,7 +31,7 @@ class IterativeDeepeningTest
     }
 
     @Test
-    void shouldReturnCorrectTargetCubekNode()
+    void shouldReturnCorrectTargetCubekNodeEightPuzzle()
     {
         final int[][] state = {
                 {2, 0, 4},
@@ -45,6 +46,30 @@ class IterativeDeepeningTest
                 {7, 8, 0}
         };
         final var expected = new EightPuzzleNode(targetState);
+
+        final var actual = new IterativeDeepening().iterativeDeepening(root, expected);
+
+        printSolution(actual);
+    }
+
+    @Test
+    void shouldReturnCorrectTargetLabyrinthine()
+    {
+        final boolean[][] state = {
+                {true, false, true},
+                {false, true, false},
+                {true, false, true}
+        };
+
+        final var root = new LabyrinthineNode(state);
+
+        final boolean[][] targetState = {
+                {true, true, true},
+                {true, true, true},
+                {true, true, true},
+        };
+
+        final var expected = new LabyrinthineNode(targetState);
 
         final var actual = new IterativeDeepening().iterativeDeepening(root, expected);
 
