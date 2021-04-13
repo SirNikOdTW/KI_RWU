@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
 
 public class CrossValidation
 {
-    private int paramMin;
-    private int paramMax;
+    private final int paramMin;
+    private final int paramMax;
 
     public CrossValidation(int paramMin, int paramMax)
     {

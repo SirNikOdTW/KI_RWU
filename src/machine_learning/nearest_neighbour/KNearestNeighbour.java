@@ -15,9 +15,9 @@ public class KNearestNeighbour implements MachineLearning
     private List<Vector> positives;
     private List<Vector> negatives;
 
-    private Distance distance;
+    private final Distance distance;
 
-    private int k;
+    private final int k;
 
     public KNearestNeighbour(Distance distance)
     {
