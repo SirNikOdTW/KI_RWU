@@ -1,15 +1,11 @@
 package machine_learning.perceptron;
 
-import machine_learning.Vector;
 import machine_learning.DataClass;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import machine_learning.Vector;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PerceptronTest
@@ -48,7 +44,7 @@ class PerceptronTest
         var actualClass = this.perceptron.classify(vector);
         var expectedClass = DataClass.NEGATIVE;
 
-        assertEquals(expectedClass, actualClass);
+        Assertions.assertEquals(expectedClass, actualClass);
     }
 
     @Test
@@ -59,6 +55,6 @@ class PerceptronTest
         var actualClass = this.perceptron.classify(vector);
         var expectedClass = DataClass.POSITIVE;
 
-        assertEquals(expectedClass, actualClass);
+        Assertions.assertEquals(expectedClass, actualClass);
     }
 }
