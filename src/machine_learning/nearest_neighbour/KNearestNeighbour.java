@@ -15,18 +15,18 @@ public class KNearestNeighbour implements MachineLearning
     private List<Vector> positives;
     private List<Vector> negatives;
 
-    private final Distance distance;
+    private final DistanceFunction distanceFunction;
 
     private final int k;
 
-    public KNearestNeighbour(Distance distance)
+    public KNearestNeighbour(DistanceFunction distanceFunction)
     {
-        this(distance, 1);
+        this(distanceFunction, 1);
     }
 
-    public KNearestNeighbour(Distance distance, int k)
+    public KNearestNeighbour(DistanceFunction distanceFunction, int k)
     {
-        this.distance = distance;
+        this.distanceFunction = distanceFunction;
         this.k = k;
     }
 
@@ -67,7 +67,7 @@ public class KNearestNeighbour implements MachineLearning
     private List<Vector> nearestNeighbours(List<Vector> vectors, Vector vector)
     {
         return vectors.parallelStream()
-                .map(v -> Map.entry(this.distance.distance(v, vector), v))
+                .map(v -> Map.entry(this.distanceFunction.distance(v, vector), v))
                 .sorted((e1, e2) -> e1.getKey() >= e2.getKey() ? (e1.getKey().equals(e2.getKey()) ? 0 : 1) : -1)
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList())

@@ -34,7 +34,7 @@ public class Vector
 
     public Vector add(Vector b)
     {
-        if (this.dimension() != b.dimension()) throw new IllegalArgumentException("Dimensions must be equals.");
+        checkEqualDimensions(b);
         return new Vector(IntStream.range(0,
                 this.dimension())
                 .mapToObj(i -> this.get(i) + b.get(i))
@@ -45,7 +45,7 @@ public class Vector
 
     public Vector subtract(Vector b)
     {
-        if (this.dimension() != b.dimension()) throw new IllegalArgumentException("Dimensions must be equals.");
+        checkEqualDimensions(b);
         return new Vector(IntStream.range(0,
                 this.dimension())
                 .mapToObj(i -> this.get(i) - b.get(i))
@@ -55,7 +55,7 @@ public class Vector
 
     public double scalar(Vector b)
     {
-        if (this.dimension() != b.dimension()) throw new IllegalArgumentException("Dimensions must be equals.");
+        checkEqualDimensions(b);
         return IntStream.range(0,
                 this.dimension())
                 .mapToDouble(i -> this.get(i) * b.get(i))
@@ -80,14 +80,9 @@ public class Vector
 
     public Vector divide(double div)
     {
-        var divided = new ArrayList<Double>();
-
-        for (int i = 0; i < this.dimension(); i++)
-        {
-            divided.add(this.values.get(i) / div);
-        }
-
-        return new Vector(divided);
+        return new Vector(IntStream.range(0, this.dimension())
+                .mapToObj(i -> this.values.get(i) / div)
+                .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     public double get(int index)
@@ -132,5 +127,11 @@ public class Vector
     public String toString()
     {
         return this.values.toString();
+    }
+
+    private void checkEqualDimensions(Vector b)
+    {
+        if (this.dimension() != b.dimension())
+            throw new IllegalArgumentException("Dimensions must be equal");
     }
 }
