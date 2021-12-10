@@ -3,6 +3,7 @@ package machine_learning.nearest_neighbour;
 import machine_learning.DataClass;
 import machine_learning.Vector;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.opentest4j.AssertionFailedError;
@@ -113,6 +114,7 @@ class KNearestNeighbourTest
 
     }
 
+    @Disabled("Takes long")
     @Test
     public void shouldReturnOptimum()
     {
