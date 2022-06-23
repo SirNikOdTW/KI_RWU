@@ -11,9 +11,9 @@ public class GameHelperTest
     void shouldReturnCorrectTargetWartales()
     {
         final int[][] state = {
-                {5, 0, 3},
-                {2, 1, 6},
-                {4, 7, 8}
+                {5, 8, 2},
+                {1, 7, 3},
+                {4, 0, 6}
         };
         final var root = new EightPuzzleNode(state);
 
