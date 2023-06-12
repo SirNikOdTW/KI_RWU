@@ -11,9 +11,9 @@ public class GameHelperTest
     void shouldReturnCorrectTargetWartales()
     {
         final int[][] state = {
-                {5, 8, 2},
-                {1, 7, 3},
-                {4, 0, 6}
+                {1, 8, 6},
+                {3, 2, 7},
+                {5, 4, 0}
         };
         final var root = new EightPuzzleNode(state);
 
@@ -44,7 +44,7 @@ public class GameHelperTest
                 {true, true, true},
                 {true, true, true},
                 {true, true, true},
-                };
+        };
 
         final var expected = new LabyrinthineNode(targetState);
 

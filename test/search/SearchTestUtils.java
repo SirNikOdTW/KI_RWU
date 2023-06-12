@@ -17,4 +17,18 @@ public class SearchTestUtils
 
         System.out.println("START");
     }
+
+    public static <T> int countNodes(final Node<T> targetNode)
+    {
+        var node = targetNode;
+
+        int nodeCount = 0;
+        while (node != null)
+        {
+            nodeCount++;
+            node = node.getParent();
+        }
+
+        return nodeCount;
+    }
 }
