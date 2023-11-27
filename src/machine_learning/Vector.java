@@ -53,7 +53,7 @@ public class Vector
         );
     }
 
-    public double scalar(Vector b)
+    public double dot(Vector b)
     {
         checkEqualDimensions(b);
         return IntStream.range(0,
@@ -62,7 +62,7 @@ public class Vector
                 .sum();
     }
 
-    public double euclid()
+    public double norm()
     {
         return Math.sqrt(IntStream.range(0,
                 this.dimension())
