@@ -48,7 +48,7 @@ class VectorTest
         var v1 = new Vector(1d, 2d);
         var v2 = new Vector(3d, 4d);
 
-        var actual = v1.scalar(v2);
+        var actual = v1.dot(v2);
         var expected = 11d;
 
         assertEquals(expected, actual);
@@ -59,7 +59,7 @@ class VectorTest
     {
         var v1 = new Vector(1d, 2d);
 
-        var actual = v1.euclid();
+        var actual = v1.norm();
         var expected = Math.sqrt(5);
 
         assertEquals(expected, actual);

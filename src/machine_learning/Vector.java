@@ -97,7 +97,7 @@ public class Vector
 
     public Vector normalized()
     {
-        return this.divide(this.euclid());
+        return this.divide(this.norm());
     }
 
     @Override

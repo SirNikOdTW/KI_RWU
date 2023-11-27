@@ -19,7 +19,7 @@ public class Perceptron implements MachineLearning
         {
             for (var x : positives)
             {
-                if (weight.scalar(x) <= 0)
+                if (weight.dot(x) <= 0)
                 {
                     weight = weight.add(x);
                     System.out.println(weight);
@@ -28,7 +28,7 @@ public class Perceptron implements MachineLearning
 
             for (var x : negatives)
             {
-                if (weight.scalar(x) > 0)
+                if (weight.dot(x) > 0)
                 {
                     weight = weight.subtract(x);
                     System.out.println(weight);
@@ -46,7 +46,7 @@ public class Perceptron implements MachineLearning
 
     public DataClass classify(Vector vector)
     {
-        return this.weight.scalar(vector) > 0 ? DataClass.POSITIVE : DataClass.NEGATIVE;
+        return this.weight.dot(vector) > 0 ? DataClass.POSITIVE : DataClass.NEGATIVE;
     }
 
     private Vector getInitializationVector(List<Vector> positives, List<Vector> negatives)
@@ -70,12 +70,12 @@ public class Perceptron implements MachineLearning
     {
         for (var x : positives)
         {
-            if (weight.scalar(x) <= 0) return false;
+            if (weight.dot(x) <= 0) return false;
         }
 
         for (var x : negatives)
         {
-            if (weight.scalar(x) > 0) return false;
+            if (weight.dot(x) > 0) return false;
         }
 
         return true;
